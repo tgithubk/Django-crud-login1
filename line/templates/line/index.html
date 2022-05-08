@@ -1,0 +1,34 @@
+<!Doctype html>
+<h1>Index</h1>
+<p>{{ user.username }}さんがログイン中</p>
+<table class="">
+
+        <tbody>
+            {% for comment in comment_list %}
+                <tr>
+                    <td>
+                        <form action="{% url 'detail' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button>更新</button>
+                        </form>
+                        <form action="{% url 'delete' comment.id %}" method="post">
+                            {% csrf_token %}
+                            <button>削除</button>
+                        </form>
+                    </td>
+                    <td>
+                        <div>{{ comment }}</div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+<form method="post">
+    {% csrf_token %}
+    <label for="comment">Comment: </label>
+    <input id="comment" type="text" name="comment" value="{{ comment }}">
+    <input type="submit" value="OK">
+</form>
+<a href="{% url 'logout' %}">ログアウト</a>

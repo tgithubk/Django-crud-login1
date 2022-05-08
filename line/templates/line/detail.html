@@ -1,0 +1,6 @@
+<form action="{% url 'update' comment.id %}" method="post">
+    {% csrf_token %}
+    <label for="comment">Comment: </label>
+    <input id="comment" type="text" name="comment" value="{{ comment }}">
+    <input type="submit" value="更新">
+</form>
